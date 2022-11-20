@@ -10,9 +10,11 @@ function App() {
     }, []);
 
     return (
-        <div className="App">
-            <R3f />
-        </div>
+        <React.Fragment>
+            <div className="App">
+                <R3f style={{ height: '100vh' }} />
+            </div>
+        </React.Fragment>
     );
 }
 
