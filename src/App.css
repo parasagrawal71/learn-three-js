@@ -1,2 +1,69 @@
+canvas {
+    background: lightgrey;
+}
+
 .App {
+    position: relative;
+}
+
+.quad {
+    height: calc(50vh - 2px);
+    width: calc(50vw - 2px);
+    position: absolute;
+}
+
+.title {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: green;
+    font-size: 20px;
+}
+
+/*
+    QUADRANT 1
+*/
+#quad1 {
+    top: 0px;
+    left: 0px;
+    border: 1px solid orange;
+}
+#quad1 canvas {
+    height: inherit !important;
+    width: inherit !important;
+}
+
+/*
+    QUADRANT 2
+*/
+#quad2 {
+    top: 0;
+    left: 50vw;
+    border: 1px solid orange;
+}
+
+/*
+    QUADRANT 3
+*/
+#quad3 {
+    top: 50vh;
+    left: 0;
+    border: 1px solid orange;
+}
+#quad3 > div:first-child {
+    height: inherit !important;
+    width: inherit !important;
+}
+#quad3 canvas {
+    height: inherit !important;
+    width: inherit !important;
+}
+
+/*
+    QUADRANT 4
+*/
+#quad4 {
+    top: 50vh;
+    left: 50vw;
+    border: 1px solid orange;
 }

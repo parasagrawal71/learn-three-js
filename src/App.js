@@ -6,15 +6,25 @@ import R3f from './components/React3Fiber';
 
 function App() {
     useEffect(() => {
-        // createCanvas();
+        createCanvas();
     }, []);
 
     return (
-        <React.Fragment>
-            <div className="App">
-                <R3f style={{ height: '100vh' }} />
+        <section className="App">
+            <div id="quad1" className="quad">
+                <div className="title">three.js</div>
             </div>
-        </React.Fragment>
+            <div id="quad2" className="quad">
+                <div className="title">{`<PLACEHOLDER>`}</div>
+            </div>
+            <div id="quad3" className="quad">
+                <R3f style={{ height: '100vh' }} />
+                <div className="title">@react-three/fiber</div>
+            </div>
+            <div id="quad4" className="quad">
+                <div className="title">{`<PLACEHOLDER>`}</div>
+            </div>
+        </section>
     );
 }
 

@@ -1,4 +1,17 @@
-import { BoxGeometry, Mesh, MeshStandardMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three';
+import {
+    ACESFilmicToneMapping,
+    AmbientLight,
+    BoxGeometry,
+    Mesh,
+    MeshStandardMaterial,
+    PerspectiveCamera,
+    PointLight,
+    Scene,
+    sRGBEncoding,
+    WebGLRenderer,
+} from 'three';
+
+const ELEMENT_ID = 'quad1';
 
 /**
  * Classes can be written to create and use 2d or 3d objects
@@ -9,9 +22,20 @@ class Cube extends Mesh {
 
         const geometry = new BoxGeometry();
         const material = new MeshStandardMaterial();
+        material.color.set('blue');
 
         this.geometry = geometry;
         this.material = material;
+    }
+
+    update() {
+        this.rotation.x += 0.01;
+        this.rotation.y += 0.01;
+    }
+
+    dispose() {
+        this.geometry.dispose();
+        // React3Fiber automatically disposes.
     }
 }
 
@@ -22,10 +46,8 @@ function createCanvas() {
     camera.position.z = 5;
 
     // const cube = new Mesh();
-
     // const geometry = new BoxGeometry();
     // const material = new MeshStandardMaterial();
-
     // cube.geometry = geometry;
     // cube.material = material;
 
@@ -33,12 +55,21 @@ function createCanvas() {
 
     scene.add(cube);
 
-    // Render
-    const renderer = new WebGLRenderer({ alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    const container = document.getElementById('root');
+    // Add elements
+    const ambientLight = new AmbientLight();
+    scene.add(ambientLight);
+    const pointLight = new PointLight();
+    pointLight.position.set(10, 10, 10);
+    scene.add(pointLight);
 
-    console.log(`container: `, container);
+    // Render
+    const renderer = new WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.toneMapping = ACESFilmicToneMapping;
+    renderer.outputEncoding = sRGBEncoding;
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    const container = document.getElementById(ELEMENT_ID);
+
     if (container) {
         container.appendChild(renderer.domElement);
     }
@@ -46,6 +77,8 @@ function createCanvas() {
     function animate() {
         requestAnimationFrame(animate);
         renderer.render(scene, camera);
+
+        cube.update();
     }
 
     animate();
