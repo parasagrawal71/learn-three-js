@@ -4,6 +4,9 @@ import './App.css';
 import { createCanvas } from './components/three-js';
 import R3f from './components/React3Fiber';
 
+/**
+ * Video Reference: https://www.youtube.com/watch?v=DPl34H2ISsk
+ */
 function App() {
     useEffect(() => {
         createCanvas();
